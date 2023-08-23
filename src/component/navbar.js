@@ -142,7 +142,7 @@ const navItems = [{name:'🏠 Home',goto:'/'}, {name:'🐾 Adopt',goto:'/adopt'}
               </Box>
             ))}
               <Box  sx={{paddingX:'1rem'}}  className='navBtn'>
-                <a href='/#stories'><Typography  fontWeight={600} height={69} sx={{display:'flex', alignItems:'center'}}  className={` ${location.pathname === '/#stories' ? 'active-link' : ''}`}>💌 Contact</Typography></a>
+                <Typography  fontWeight={600} height={69} sx={{display:'flex', alignItems:'center'}}  className={` ${location.pathname === '/#stories' ? 'active-link' : ''}`}>💌 Contact</Typography>
               </Box>
           </Box>
           <Stack direction='row' gap={3} mr={2} sx={{ display: { xs: 'none', md: 'flex' } }}>
