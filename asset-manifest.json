@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/StrayToStay-frontend/static/css/main.0002b4e2.css",
-    "main.js": "/StrayToStay-frontend/static/js/main.90e37299.js",
+    "main.js": "/StrayToStay-frontend/static/js/main.b4be2f4a.js",
     "static/js/787.c4e7f8f9.chunk.js": "/StrayToStay-frontend/static/js/787.c4e7f8f9.chunk.js",
     "static/media/d1.jpg": "/StrayToStay-frontend/static/media/d1.19cdf54abca94ec1b8ab.jpg",
     "static/media/d5.jpg": "/StrayToStay-frontend/static/media/d5.0788464c2a54b8dc0630.jpg",
@@ -30,11 +30,11 @@
     "static/media/wwr.avif": "/StrayToStay-frontend/static/media/wwr.38f6562c43de1f7c806a.avif",
     "index.html": "/StrayToStay-frontend/index.html",
     "main.0002b4e2.css.map": "/StrayToStay-frontend/static/css/main.0002b4e2.css.map",
-    "main.90e37299.js.map": "/StrayToStay-frontend/static/js/main.90e37299.js.map",
+    "main.b4be2f4a.js.map": "/StrayToStay-frontend/static/js/main.b4be2f4a.js.map",
     "787.c4e7f8f9.chunk.js.map": "/StrayToStay-frontend/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0002b4e2.css",
-    "static/js/main.90e37299.js"
+    "static/js/main.b4be2f4a.js"
   ]
 }
