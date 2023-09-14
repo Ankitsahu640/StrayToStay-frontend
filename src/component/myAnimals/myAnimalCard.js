@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -9,38 +9,37 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Tooltip } from '@mui/material';
 import EditMyAnimal from './editMyAnimal';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { deleteAnimal } from '../../redux/action/animalAction';
+import LaunchIcon from '@mui/icons-material/Launch';
+import { Link } from 'react-router-dom';
 
-function MyAnimalCard({animal}) {
+function MyAnimalCard({animal,setShowToast}) {
 
-let date = new Date(animal.date).toISOString().replace('-', '/').split('T')[0].replace('-', '/');
+    let date = new Date(animal.date).toISOString().replace('-', '/').split('T')[0].replace('-', '/');
 
-const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-const dispatch = useDispatch();
-// const status = useSelector(store=>store.user);
-// const {loading} = useSelector(store=>store.load);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const dispatch = useDispatch();
 
-// const [showToast, setShowToast] = useState(false);
+    const handleOpenEditModal = () => {
+        setIsEditModalOpen(true);
+    };
 
-const handleOpenEditModal = () => {
-    setIsEditModalOpen(true);
-};
+    const handleCloseEditModal = () => {
+        setIsEditModalOpen(false);
+    };
 
-const handleCloseEditModal = () => {
-    setIsEditModalOpen(false);
-};
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
-const [confirmLogout, setConfirmLogout] = useState(false);
+    const handleDelete = () =>{
+        setConfirmDelete(true);
+    }
 
-const handleDelete = () =>{
-    setConfirmLogout(true);
-}
-
-const handleDeleteAnimal = () =>{
-    dispatch(deleteAnimal(animal._id,animal.photo));
-    setConfirmLogout(false);
-}
+    const handleDeleteAnimal = async () =>{
+        await dispatch(deleteAnimal(animal._id,animal.photo));
+        setShowToast(true);
+        setConfirmDelete(false);
+    }
 
   return (
         <Box width="100%"  bgcolor="#ffffee" sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, 
@@ -59,12 +58,17 @@ const handleDeleteAnimal = () =>{
                                 {animal.type}
                             </Typography>
                         </Stack>
-                        <Stack ml={4} gap={1}  direction="row" alignItems="center">
+                        <Stack ml={4} gap={1}  direction="row" alignItems="center" flexWrap='wrap'>
                             <Tooltip title="Edit" placement="top-start" arrow>
                                 <IconButton size='medium' sx={{color:'#304ffe'}}  onClick={handleOpenEditModal}> <EditNoteIcon/> </IconButton>
                             </Tooltip>
                             <Tooltip title="Delete" placement="top-start" arrow>
                                 <IconButton size='medium' sx={{color:'#d50000'}} onClick={handleDelete}> <DeleteIcon/> </IconButton>   
+                            </Tooltip>
+                            <Tooltip title="View Detail" placement="top-start" arrow>
+                                <Link to={`/animalDetail/${animal._id}`} style={{ textDecoration: 'none' }}>
+                                    <IconButton size='medium' sx={{color:'#ff8a00'}}> <LaunchIcon/> </IconButton> 
+                                </Link>  
                             </Tooltip>
                         </Stack>
                     </Stack>
@@ -89,8 +93,9 @@ const handleDeleteAnimal = () =>{
                 open={isEditModalOpen}
                 onClose={handleCloseEditModal}
                 animal={animal}
+                setShowToast={setShowToast}
             />
-            <Dialog open={confirmLogout} onClose={() => setConfirmLogout(false)}>
+            <Dialog open={confirmDelete} onClose={() => setConfirmDelete(false)}>
                 <DialogTitle>Confirm Delete</DialogTitle>
                 <DialogContent>
                 <DialogContentText>
@@ -98,7 +103,7 @@ const handleDeleteAnimal = () =>{
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={() => setConfirmLogout(false)} color="secondary">
+                <Button onClick={() => setConfirmDelete(false)} color="secondary">
                     Cancel
                 </Button>
                 <Button onClick={handleDeleteAnimal} color="secondary">

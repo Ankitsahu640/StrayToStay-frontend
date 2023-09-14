@@ -1,10 +1,11 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import catHeader from '../images/cat.png'
-import DonateCard from './donateCard'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllInjuredAnimal } from '../../redux/action/injuredAnimalAction';
-import SkeltonCard from '../adoptPage/skeltonCard';
+import DonateCard2 from './donateCard2';
+import DonateSkeletonCard from './donateSkeletonCard';
+import ReactPaginate from "react-paginate";
 
 function DonatePage() {
     // const animals = [
@@ -77,6 +78,18 @@ function DonatePage() {
     const {loading} = useSelector(store=>store.load);
     const dispatch = useDispatch();
 
+    const itemsPerPage =6;
+
+    const [itemOffset, setItemOffset] = useState(0);
+    const endOffset = itemOffset + itemsPerPage;
+
+    const pageCount = Math.ceil(animals.length / itemsPerPage);
+  
+    const handlePageClick = (event) => {
+      const newOffset = (event.selected * itemsPerPage) % animals.length;
+      setItemOffset(newOffset);
+    };
+
     useEffect(()=>{
         dispatch(getAllInjuredAnimal());
     },[])
@@ -115,17 +128,34 @@ function DonatePage() {
             <Typography fontSize={25} mt={3} ml={2} fontWeight={700} color="#11142d">
                 {(!animals.length && !loading )?"  There are no animals to adopt!":""}
             </Typography>
-            <Stack container direction={'row'} mt={4} justifyContent={{md:'space-between',sm:'space-around'}}  gap={2} flexWrap='wrap'
+            <Stack container direction={'row'} mt={4} justifyContent='space-around'  gap={1} flexWrap='wrap'
             sx={{width:{md:"99.6%",sm:"94.5%",xs:"94.5%"},marginX:"auto"}} >
                 {loading?(
                     [1,2,3,4,5,6].map((e)=>{
-                        return <SkeltonCard/>
+                        return <DonateSkeletonCard/>
                     })
                     ):
-                    (animals?.map((animal, index) => (
-                        <DonateCard key={index} animal={animal} />
+                    (animals?.slice(itemOffset, endOffset).map((animal, index) => (
+                        <DonateCard2 key={index} animal={animal} />
                     )))
                     }
+            </Stack>
+            <Stack width='fit-content' marginLeft='auto' mt={4}>
+                <ReactPaginate
+                breakLabel="..."
+                nextLabel='Next →'
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={1}
+                marginPagesDisplayed={1}
+                pageCount={pageCount}
+                previousLabel='← Previous'
+                renderOnZeroPageCount={null}
+                containerClassName={'pagination'}
+                previousLinkClassName={'pagination__link'}
+                nextLinkClassName={'pagination__link'}
+                disabledClassName={'pagination__link--disabled'}
+                activeClassName={'pagination__link--active'}
+                />
             </Stack>
         </Box>
     )

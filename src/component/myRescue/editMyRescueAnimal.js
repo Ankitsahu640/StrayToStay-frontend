@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useState } from 'react';
 import { Modal,Button,TextField,FormControl, InputLabel, Select, MenuItem, Typography, Box, RadioGroup, FormControlLabel, Radio, Checkbox, FormLabel,IconButton,Container,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from "react-redux";
-import { updateAnimal } from '../../redux/action/animalAction';
+import { updateInjuredAnimal } from '../../redux/action/injuredAnimalAction';
 
 const petTypes = [
     'dog',
@@ -17,7 +18,7 @@ const petTypes = [
     'other',
   ];
 
-const EditMyAnimal = ({ open, onClose,animal,setShowToast }) => {
+const EditMyRescueAnimal = ({ open, onClose,animal,setShowToast }) => {
   const [formData, setFormData] = useState(animal);
  
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const EditMyAnimal = ({ open, onClose,animal,setShowToast }) => {
   const handleSubmit = async(event) => {
     event.preventDefault();
     onClose();
-    await dispatch(updateAnimal(formData));
+    await dispatch(updateInjuredAnimal(formData));
     setShowToast(true);
   };
 
@@ -86,19 +87,8 @@ const EditMyAnimal = ({ open, onClose,animal,setShowToast }) => {
                     <FormControlLabel value="other" control={<Radio />} label="Other" />
                   </RadioGroup>
                 </FormControl>
-                <TextField label="Age" name="age" type="number" onChange={handleChange} value={formData.age}  required fullWidth style={{ marginBottom: '15px' }} />
-                <TextField label="Colour" name="colour" onChange={handleChange} value={formData.colour} required fullWidth style={{ marginBottom: '15px' }} />
-                <FormControlLabel
-                  control={<Checkbox onChange={handleChange} checked={formData.adopted} name="adopted" />}
-                  label="Available for Adoption" 
-                  style={{ marginBottom: '15px' }}
-                />
-                <FormControlLabel
-                  control={<Checkbox onChange={handleChange} checked={formData.vaccinated} name="vaccinated" />}
-                  label="Vaccinated" 
-                  style={{ marginBottom: '15px' }}
-                />
-                <TextField label="Description" name='description' onChange={handleChange} value={formData.description}  placeholder="Describe the more about your pet" required multiline rows={5}  style={{ marginBottom: '15px' }} />
+                <TextField label="Injuries" name="injuries" onChange={handleChange} value={formData.injuries} required fullWidth style={{ marginBottom: '15px' }} />
+                <TextField label="Injury Detail" name='injuryDetail' onChange={handleChange} value={formData.injuryDetail}  placeholder="Describe the injuries in detail" required multiline rows={5}  style={{ marginBottom: '15px' }} />
                 <TextField label="Address" name="address" onChange={handleChange} value={formData.address} required fullWidth style={{ marginBottom: '15px' }} />
                 <TextField label="City" name="city" onChange={handleChange} value={formData.city} required fullWidth style={{ marginBottom: '15px' }} />
                 <TextField label="Country" name="country" onChange={handleChange} value={formData.country} required fullWidth style={{ marginBottom: '15px' }} />
@@ -111,4 +101,4 @@ const EditMyAnimal = ({ open, onClose,animal,setShowToast }) => {
   );
 };
 
-export default EditMyAnimal;
+export default EditMyRescueAnimal

@@ -1,4 +1,4 @@
-import { DELETE_ANIMAL, GET_USER_ANIMAL, UPDATE_ANIMAL } from "../type";
+import {  DELETE_USER_ANIMAL, GET_USER_ANIMAL,  UPDATE_USER_ANIMAL } from "../type";
 
 
 const initialData = {
@@ -15,8 +15,6 @@ export const userAnimalReducer = (state=initialData,action) =>{
                 return{
                     ...state,
                     animals:action.payload.allAnimal,
-                    success:action.payload.success,
-                    message:action.payload.message
                 }
             }
             else{
@@ -28,7 +26,7 @@ export const userAnimalReducer = (state=initialData,action) =>{
             }
         }
 
-        case DELETE_ANIMAL: {
+        case DELETE_USER_ANIMAL: {
             if(action.payload.success===true){
                 return{
                     ...state,
@@ -46,21 +44,20 @@ export const userAnimalReducer = (state=initialData,action) =>{
             }
         }
 
-        case UPDATE_ANIMAL: {
-            console.log(action.payload,state);
+        case UPDATE_USER_ANIMAL: {
             if (action.payload.success === true) {
                 const updatedAnimal = action.payload.animal;
                 const updatedAnimals = state.animals?.map(animal => {
                     return animal._id === updatedAnimal._id ? updatedAnimal : animal;
                 });
-        
                 return {
                     ...state,
                     animals: updatedAnimals,
                     success: action.payload.success,
                     message: action.payload.message
                 };
-            } else {
+            } 
+            else {
                 return {
                     ...state,
                     success: action.payload.success,

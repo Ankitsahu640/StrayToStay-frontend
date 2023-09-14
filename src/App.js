@@ -18,6 +18,11 @@ import { Provider } from 'react-redux';
 import { useLayoutEffect } from 'react';
 import store from './redux/store';
 import NotFoundPage from './component/notFoundPage';
+import DonateDetails from './component/DonatePage/donateDetail';
+import MyDonation from './component/myDonation/myDonation';
+import PaymentSuccess from './component/paymentSuccess';
+import PaymentCancel from './component/paymentCancel';
+import GeoCoderMarker from './component/common/GeoCodeMarker';
 
 const Wrapper = ({children}) => {
   const location = useLocation();
@@ -35,10 +40,18 @@ function App() {
             <NavBar />
         </nav>
         <Routes>
-            <Route path="/" element={<Home/>}/>
+            {["/", "/contact"].map(path => (
+              <Route
+                key={path}
+                path={path}
+                element={<Home />}
+              />
+            ))}
+            {/* <Route path={["/", "/contact"]} element={<Home/>}/> */}
             <Route path="/adopt" element={<Provider store={store}><AdoptPage/></Provider>}/>
             <Route path="/donate" element={<Provider store={store}><DonatePage/></Provider>}/>
             <Route path="/animalDetail/:id" element={<Provider store={store}><AdoptDetails/></Provider>}/>
+            <Route path="/injuedAnimalDetail/:id" element={<Provider store={store}><DonateDetails/></Provider>}/>
             <Route path="/profile" element={<Provider store={store}><Profile/></Provider>}/>
             <Route path="/myAnimal" element={<Provider store={store}><MyAnimalPage/></Provider>}/>
             <Route path="/myRescue" element={<Provider store={store}><MyRescuePage/></Provider>}/>
@@ -46,6 +59,9 @@ function App() {
             <Route path="/rescue" element={<Provider store={store}><Rescue/></Provider>}/>
             <Route path="/signup" element={<Provider store={store}><Signup/></Provider>}/>
             <Route path="/signin" element={<Provider store={store}><Signin/></Provider>}/>
+            <Route path="/mydonation" element={<MyDonation/>}/>
+            <Route path='/success' element={<PaymentSuccess/>}/>
+            <Route path='/cancel' element={<PaymentCancel/>}/>
             <Route path="/*" element={<NotFoundPage/>}/>
         </Routes> 
         <footer>

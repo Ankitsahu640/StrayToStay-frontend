@@ -1,18 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CancelIcon from '@mui/icons-material/Cancel';
-import { IconButton, Tooltip } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Tooltip } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { deleteInjuredAnimal } from '../../redux/action/injuredAnimalAction';
+import EditMyRescueAnimal from './editMyRescueAnimal';
 
-function MyRescueCard({animal}) {
 
-let date = new Date(animal.date).toISOString().replace('-', '/').split('T')[0].replace('-', '/');
+function MyRescueCard({animal,setShowToast}) {
 
+    let date = new Date(animal.date).toISOString().replace('-', '/').split('T')[0].replace('-', '/');
+
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleOpenEditModal = () => {
+        setIsEditModalOpen(true);
+    };
+
+    const handleCloseEditModal = () => {
+        setIsEditModalOpen(false);
+    };
+
+    const [confirmDelete, setConfirmDelete] = useState(false);
+
+    const handleDelete = () =>{
+        setConfirmDelete(true);
+    }
+
+    const handleDeleteAnimal = async () =>{
+        await dispatch(deleteInjuredAnimal(animal._id,animal.photo));
+        setShowToast(true);
+        setConfirmDelete(false);
+    }
   return (
         <Box width="100%"  bgcolor="#ffffee" sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, 
         gap: "20px", borderRadius:'10px',boxShadow:"rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px", padding:"10px",
@@ -32,10 +56,10 @@ let date = new Date(animal.date).toISOString().replace('-', '/').split('T')[0].r
                         </Stack>
                         <Stack ml={4} gap={1}  direction="row" alignItems="center">
                             <Tooltip title="Edit" placement="top-start" arrow>
-                                <IconButton size='medium' sx={{color:'#304ffe'}}> <EditNoteIcon/> </IconButton>
+                                <IconButton size='medium' sx={{color:'#304ffe'}}  onClick={handleOpenEditModal}> <EditNoteIcon/> </IconButton>
                             </Tooltip>
                             <Tooltip title="Delete" placement="top-start" arrow>
-                                <IconButton size='medium' sx={{color:'#d50000'}}> <DeleteIcon/> </IconButton>   
+                                <IconButton size='medium' sx={{color:'#d50000'}} onClick={handleDelete}> <DeleteIcon/> </IconButton>   
                             </Tooltip>
                         </Stack>
                     </Stack>
@@ -50,6 +74,28 @@ let date = new Date(animal.date).toISOString().replace('-', '/').split('T')[0].r
                     <Typography fontSize={14} color="#11142D"><b>Posted - </b>{date}</Typography>
                 </Stack>
             </Stack>
+            <EditMyRescueAnimal
+                open={isEditModalOpen}
+                onClose={handleCloseEditModal}
+                animal={animal}
+                setShowToast={setShowToast}
+            />
+            <Dialog open={confirmDelete} onClose={() => setConfirmDelete(false)}>
+                <DialogTitle>Confirm Delete</DialogTitle>
+                <DialogContent>
+                <DialogContentText>
+                    Are you sure you want to delete?
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={() => setConfirmDelete(false)} color="secondary">
+                    Cancel
+                </Button>
+                <Button onClick={handleDeleteAnimal} color="secondary">
+                    Delete
+                </Button>
+                </DialogActions>
+            </Dialog>
         </Box>
 
   )

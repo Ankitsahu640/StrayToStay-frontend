@@ -57,7 +57,7 @@ function Rehome() {
     const [formData, setFormData] = useState(initialFormData);
     const dispatch = useDispatch();
     const status = useSelector(store=>store.animal);
-    const {loading} = useSelector(store=>store.load);
+    const {loading} = useSelector(store => store.load);
 
     const isLoggedIn = localStorage.getItem('token') !== null;
 
@@ -125,9 +125,9 @@ function Rehome() {
 
   return (
     <Box width='100%' minHeight='100vh'>
-      {loading && (<Loading/>)}
       {isLoggedIn ? (
         <>
+        {loading && <Loading/>}
         <Stack  mt={4} height={{sm:400,xs:200}} justifyContent='center' alignItems='center' direction="column" 
         sx={{backgroundSize:'cover',  boxSizing: 'content-box', backgroundRepeat:'no-repeat', backgroundImage:`url(${headerImg})`}}>
           <Box maxWidth={{sm:'70%',xs:'94%'}} sx={{color:'white'}} >
@@ -213,6 +213,7 @@ function Rehome() {
                     row
                     value={formData.gender} 
                     onChange={handleGenderChange}
+                    required
                     aria-labelledby="demo-row-radio-buttons-group-label"
                     name="gender"
                   >
@@ -233,7 +234,7 @@ function Rehome() {
                   label="Vaccinated"
                   style={{ marginBottom: '15px' }}
                 />
-                <TextField label="Description" name='description' value={formData.description} onChange={handleInputChange} placeholder="Describe the more about your pet" required multiline rows={5} maxRows={10} style={{ marginBottom: '15px' }} />
+                <TextField label="Description" name='description' value={formData.description} onChange={handleInputChange} placeholder="Describe the more about your pet" required multiline minLength={10} rows={5} style={{ marginBottom: '15px' }} />
                 <TextField label="Address" name="address" value={formData.address} onChange={handleInputChange}  required fullWidth style={{ marginBottom: '15px' }} />
                 <TextField label="City" name="city" value={formData.city} onChange={handleInputChange}  required fullWidth style={{ marginBottom: '15px' }} />
                 <TextField label="Country" name="country" value={formData.country} onChange={handleInputChange}  required fullWidth style={{ marginBottom: '20px' }} />

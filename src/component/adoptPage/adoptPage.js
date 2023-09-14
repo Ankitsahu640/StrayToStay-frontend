@@ -4,7 +4,7 @@ import headerImg from '../images/animal_header2.jpg'
 import AdoptCard from './adoptCard';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Loading from '../loading';
+import ReactPaginate from "react-paginate";
 import { getAllAnimal } from '../../redux/action/animalAction';
 import SkeltonCard from './skeltonCard';
 
@@ -187,6 +187,19 @@ function AdoptPage() {
     setActive(selectedType.id)
 
   }
+
+    const itemsPerPage =6;
+
+    const [itemOffset, setItemOffset] = useState(0);
+    const endOffset = itemOffset + itemsPerPage;
+
+    const pageCount = Math.ceil(animals.length / itemsPerPage);
+  
+    const handlePageClick = (event) => {
+      const newOffset = (event.selected * itemsPerPage) % animals.length;
+      setItemOffset(newOffset);
+    };
+
   
   const handleReset = () =>{
     setFilter({name:'',breed:''});
@@ -316,13 +329,29 @@ function AdoptPage() {
                     return <SkeltonCard/>
                   })
                 ):
-                  (animals?.map((animal, index) => (
+                  (animals?.slice(itemOffset, endOffset).map((animal, index) => (
                       <AdoptCard key={index} animal={animal} />
                   )))
                 }
           </Stack>
       </Box>
-      
+      <Stack width='fit-content' marginLeft='auto' mt={4}>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel='Next →'
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={1}
+          marginPagesDisplayed={1}
+          pageCount={pageCount}
+          previousLabel='← Previous'
+          renderOnZeroPageCount={null}
+          containerClassName={'pagination'}
+          previousLinkClassName={'pagination__link'}
+          nextLinkClassName={'pagination__link'}
+          disabledClassName={'pagination__link--disabled'}
+          activeClassName={'pagination__link--active'}
+        />
+      </Stack>
     </Box>
   )
 }

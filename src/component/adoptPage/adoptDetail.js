@@ -4,13 +4,17 @@ import Stack from "@mui/material/Stack";
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 import Place from "@mui/icons-material/Place";
-import { Avatar, Button, Chip, Divider } from "@mui/material";
+import { Avatar, Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, TextField } from "@mui/material";
 import Map from "../common/map";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAnimalDetail } from "../../redux/action/animalAction";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AnimalDetailSkeleton from "./animalDetailSkeleton";
+import { BASE_URL } from "../../redux/baseURL";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { LOADING } from "../../redux/type";
 
 const AdoptDetails = () => {
 
@@ -47,6 +51,9 @@ const AdoptDetails = () => {
     const {id} = useParams();
     const animal = useSelector(state=> state.animalDetail.animal);
     const {loading} = useSelector(store=>store.load);
+    const [load, setLoad] = useState(loading);
+
+    const isLoggedIn = localStorage.getItem('token') !== null;
 
     const dispatch = useDispatch();
 
@@ -54,12 +61,57 @@ const AdoptDetails = () => {
         dispatch(getAnimalDetail(id));
     },[])
 
+    const [confirmAdopt,setConfirmAdopt] = useState(false);
+    const [maildData,setMailData] = useState({name:'', email:'',user:{},detailUrl:window.location.href,message:''})
+
+    const handleOpenAdopt = () =>{
+        if(isLoggedIn){
+            setMailData({
+                ...maildData,
+                name:animal.creator.name,
+                email:animal.creator.email,
+                user:JSON.parse(localStorage.getItem('user'))
+            })
+            setConfirmAdopt(true);
+        }
+        else{
+            toast.error('Please Log In', {
+                position: "top-right",
+                autoClose: 2000,
+            });
+        }
+    }
+
+    const handleAdopt = async() =>{
+        setConfirmAdopt(false);
+        try{
+            await fetch(`${BASE_URL}/api/v1/sendmail/`,{
+                method:'POST',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify(maildData)
+            });
+            toast.success('Request send succesfully', {
+                position: "top-right",
+                autoClose: 2000,
+            });
+        }
+        catch(error){
+            console.log(error);
+            toast.error('something went wrong', {
+                position: "top-right",
+                autoClose: 2000,
+            });
+        }
+        setMailData({name:'', email:'',user:{},detailUrl:window.location.href,message:''})
+    }
     
     
 
     return (
         <>
-        {loading ?(<AnimalDetailSkeleton/>):
+        {load ?(<AnimalDetailSkeleton/>):
         ( <Box minHeight='100vh' borderRadius="15px" width={{lg:'1300px',xs:'100%'}} mx='auto' padding="20px" bgcolor="#fefefe" mt={8}>
             
             <Box sx={{borderLeft:'5px solid #ff6d00'}}>
@@ -178,7 +230,7 @@ const AdoptDetails = () => {
                         </Stack>
 
                         <Box >
-                            <Button variant="contained" size="large" color='secondary' fullWidth sx={{color:'white', textTransform:'capitalize'}}><b>Adopt</b></Button>
+                            <Button variant="contained" size="large" color='secondary' onClick={handleOpenAdopt} fullWidth sx={{color:'white', textTransform:'capitalize'}}><b>Adopt</b></Button>
                         </Box>
                     </Stack>
 
@@ -189,8 +241,23 @@ const AdoptDetails = () => {
                     </Stack>
                 </Stack>
             </Box>
+            <Dialog open={confirmAdopt} onClose={() => setConfirmAdopt(false)} maxWidth='300px'>
+                <DialogTitle>Request for Adoption</DialogTitle>
+                <DialogContent sx={{marginTop:'10px'}} >
+                <TextField label="Message" name='message'  placeholder="write any message for owner" value={maildData.message} onChange={(e)=>{setMailData({...maildData,message:e.target.value})}} multiline rows={5}  style={{width:'280px', margin: '15px 0px' }} />
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={() => setConfirmAdopt(false)} color="secondary">
+                    Cancel
+                </Button>
+                <Button onClick={handleAdopt} color="secondary">
+                    Adopt
+                </Button>
+                </DialogActions>
+            </Dialog>
         </Box>)
         }
+        <ToastContainer/>
   </>
     );
 };

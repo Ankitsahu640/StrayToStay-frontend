@@ -5,6 +5,8 @@ import Services from './components/Services';
 import WhoweAre from './components/WhoweAre';
 import Stories from './components/Stories';
 import { Outlet } from 'react-router-dom';
+import Contact from './components/contact';
+
 
 function Home() {
   return (
@@ -14,6 +16,7 @@ function Home() {
       <Services/>
       <Destinations />
       <Stories/>
+      <Contact/>
       <Outlet/>
     </div>
   )

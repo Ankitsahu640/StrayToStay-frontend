@@ -11,13 +11,13 @@ import {Link,  Outlet, useLocation } from 'react-router-dom';
 import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
 
 
-
 function NavBar(props) {
 
+  
 
 
 const drawerWidth = 240;
-const navItems = [{name:'🏠 Home',goto:'/'}, {name:'🐾 Adopt',goto:'/adopt'}, {name:'🌟 Rehome',goto:'/rehome'}, {name:'⛑️ Rescue',goto:'/rescue'}];
+const navItems = [{name:'🏠 Home',goto:'/'}, {name:'🐾 Adopt',goto:'/adopt'}, {name:'🌟 Rehome',goto:'/rehome'}, {name:'⛑️ Rescue',goto:'/rescue'},{name:'💌 Contact',goto:'/contact'}];
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -29,18 +29,6 @@ const navItems = [{name:'🏠 Home',goto:'/'}, {name:'🐾 Adopt',goto:'/adopt'}
     if(isLoggedIn){
       userData = JSON.parse(localStorage.getItem('user'));
     }
-  
-    useEffect(() => {
-      const handleScroll = () => {
-        setScrolled(window.scrollY > 600);
-      };
-  
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, []);
 
 
   const handleDrawerToggle = () => {
@@ -64,9 +52,32 @@ const navItems = [{name:'🏠 Home',goto:'/'}, {name:'🐾 Adopt',goto:'/adopt'}
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setAnchorEl(null);
-    window.location.href='/'
+    window.location.href='/StrayToStay-frontend'
     setConfirmLogout(false);
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 600);
+    };
+    if (location.pathname === '/contact') {
+      const cont = document.getElementById('contactForm');
+      if (cont) {
+        const topPosition = cont.getBoundingClientRect().top;
+        window.scrollTo({
+          top: topPosition - 70,
+          behavior: 'smooth',
+        });
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [location.pathname]);
+  
 
 
   const drawer = (
@@ -141,9 +152,12 @@ const navItems = [{name:'🏠 Home',goto:'/'}, {name:'🐾 Adopt',goto:'/adopt'}
                 <Link to={item.goto}><Typography  fontWeight={600} height={69} sx={{display:'flex', alignItems:'center'}}  className={` ${location.pathname === item.goto ? 'active-link' : ''}`}>{item.name}</Typography></Link>
               </Box>
             ))}
-              <Box  sx={{paddingX:'1rem'}}  className='navBtn'>
+              {/* <Box  sx={{paddingX:'1rem'}}  className='navBtn'>
                 <Typography  fontWeight={600} height={69} sx={{display:'flex', alignItems:'center'}}  className={` ${location.pathname === '/#stories' ? 'active-link' : ''}`}>💌 Contact</Typography>
-              </Box>
+              </Box> */}
+              {/* <Box sx={{paddingX:'1rem'}} onClick={()=>{setIsConatct(true)}}  className='navBtn'>
+                <Link to='//#contactForm'><Typography  fontWeight={600} height={69} sx={{display:'flex', alignItems:'center'}}  className={` ${isContact ? 'active-link' : ''}`}>💌 Contact</Typography></Link>
+              </Box> */}
           </Box>
           <Stack direction='row' gap={3} mr={2} sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Link to='/donate'><Button variant="outlined" size='large' color='inherit'  sx={{textTransform:'none',marginTop:'11px', maxHeight:'42px', fontWeight:'800'}}>Donate</Button></Link>
@@ -235,10 +249,12 @@ const navItems = [{name:'🏠 Home',goto:'/'}, {name:'🐾 Adopt',goto:'/adopt'}
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <ArrowForwardIosIcon fontSize='small'/>
-              </ListItemIcon>
-              My Donation
+              <Link to='/mydonation'>
+                <ListItemIcon>
+                  <ArrowForwardIosIcon fontSize='small'/>
+                </ListItemIcon>
+                My Donation
+              </Link>
             </MenuItem>
             <Divider />
             <MenuItem onClick={LogOut}>

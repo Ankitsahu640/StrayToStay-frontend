@@ -3,6 +3,7 @@ import servicesB from '../assets/services-2.png'
 import servicesC from '../assets/services-3.png'
 import servicesD from '../assets/services-4.png'
 import servicesBackground from '../assets/service-background.jpg'
+import { Divider, Typography } from '@mui/material'
 
 export default function Services (){
     return(
@@ -13,9 +14,10 @@ export default function Services (){
                 </div>
                 <div class="absolute inset-0 bg-black bg-opacity-70">
                 </div>
-                <div className="flex flex-col justify-center text-white gap-4 py-28 px-10 ">
-                    <h1 className=" text-5xl text-center mb-4 z-20 block mx-auto"> Our Services </h1>
-                    <p className="text-2xl text-center z-20">Providing hope and shelter to stray dogs. Join us in giving these furry friends a chance at a better life through compassion and care</p>
+                <div className="flex flex-col py-28 px-1 sm:px-10 mx-auto text-center text-white ">
+                    <Typography variant='h1' component='h2' fontSize={55} fontWeight={600} zIndex='20' color='white'> Our Services </Typography>
+                    <p className='text-white z-20'>Providing hope and shelter to stray dogs. Join us in giving these furry friends a chance at a better <br/> life through compassion and care</p>
+                    <Divider sx={{ borderBottomWidth: 5,borderRadius:'5px', borderColor:'#ff8a00', margin:'15px auto', zIndex:20 }}  width='200px'/>
                 </div>
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10 '>
                 <div className='dog-card flex flex-col justify-center items-center py-8 px-10 rounded bg-white z-20'>

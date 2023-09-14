@@ -25,7 +25,8 @@ const LoadingAnimalCard = () => {
               <Skeleton variant="text" width="70%" height={22} />
               <Skeleton variant="text" width="50%" height={18} />
             </Stack>
-            <Stack ml={4} gap={1} direction="row" alignItems="center">
+            <Stack ml={4} gap={3} direction="row" alignItems="center">
+              <Skeleton variant="circular" width={32} height={20} />
               <Skeleton variant="circular" width={32} height={20} />
               <Skeleton variant="circular" width={32} height={20} />
             </Stack>

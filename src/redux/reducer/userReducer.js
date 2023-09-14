@@ -14,7 +14,7 @@ export const userReducer = (state=initialData , action)=>{
                 localStorage.setItem('token' ,action.payload.token )
                 localStorage.setItem('user' ,JSON.stringify(action.payload.user) )
                 setTimeout(() => {
-                    window.location.href='/'
+                    window.location.href='/StrayToStay-frontend'
                   }, 2000);
             }
              return{
@@ -29,7 +29,7 @@ export const userReducer = (state=initialData , action)=>{
                 localStorage.setItem('token' ,action.payload.token )
                 localStorage.setItem('user' ,JSON.stringify(action.payload.user) )
                 setTimeout(() => {
-                    window.location.href='/'
+                    window.location.href='/StrayToStay-frontend'
                   }, 2000);
             }
              return{

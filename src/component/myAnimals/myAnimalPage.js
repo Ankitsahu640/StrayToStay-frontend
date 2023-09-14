@@ -1,5 +1,5 @@
 import { Box, Stack,Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import MyAnimalCard from './myAnimalCard'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAnimal } from '../../redux/action/animalAction';
@@ -122,12 +122,31 @@ function MyAnimalPage() {
     const allAnimal = useSelector(store=> store.userAnimal);
     const {loading} = useSelector(store=>store.load);
 
+    const [showToast, setShowToast] = useState(false);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
       dispatch(getUserAnimal());
   },[]);
-  
+
+    useEffect(() => {
+      if (showToast) {
+          if (allAnimal.success && allAnimal.message) {
+              toast.success(allAnimal.message, {
+                  position: "top-right",
+                  autoClose: 2000,
+              });
+          } else if (allAnimal.message) {
+              toast.error(allAnimal.message, {
+                  position: "top-right",
+                  autoClose: 2000,
+              });
+          }
+          setShowToast(false); 
+      }
+  }, [showToast, allAnimal]);
+
   return (
     <Box minHeight='100vh' mt={11} maxWidth='1200px' mx='auto' px={3}>
         <Box sx={{borderLeft:'5px solid #ff6d00'}}>
@@ -142,7 +161,7 @@ function MyAnimalPage() {
                   })
                 ):
           (allAnimal.animals.map((animal,index)=>{
-            return(<MyAnimalCard animal={animal} key={index}/>)
+            return(<MyAnimalCard animal={animal} key={index} setShowToast={setShowToast}/>)
           }))
         }
         </Stack>

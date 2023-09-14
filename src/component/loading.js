@@ -3,7 +3,7 @@ import { Backdrop, CircularProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const LoadingBackdrop = styled(Backdrop)(({ theme }) => ({
-  zIndex: theme.zIndex.drawer + 1,
+  zIndex: 10,
   color: '#FFA500', // Orange color
   backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black for blur effect
   display: 'flex',

@@ -5,7 +5,7 @@ import { ErrorOutline } from '@mui/icons-material';
 
 const NotFoundPage = () => {
   return (
-    <div style={{ textAlign: 'center', marginTop: '100px',minHeight:'100vh'}}>
+    <div style={{ textAlign: 'center', marginTop: '200px',minHeight:'100vh'}}>
       <ErrorOutline color="error" fontSize="large" />
       <Typography variant="h4" gutterBottom>
         Page Not Found

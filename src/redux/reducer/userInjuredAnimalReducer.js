@@ -1,4 +1,4 @@
-import { DELETE_INJURED_ANIMAL, GET_USER_INJURED_ANIMAL, UPDATE_INJURED_ANIMAL } from "../type";
+import { DELETE_USER_INJURED_ANIMAL, GET_USER_INJURED_ANIMAL, UPDATE_USER_INJURED_ANIMAL } from "../type";
 
 
 const initialData = {
@@ -16,8 +16,6 @@ export const userInjuredAnimalReducer = (state=initialData,action) =>{
                 return{
                     ...state,
                     animals:action.payload.allAnimal,
-                    success:action.payload.success,
-                    message:action.payload.message
                 }
             }
             else{
@@ -29,7 +27,7 @@ export const userInjuredAnimalReducer = (state=initialData,action) =>{
             }
         }
 
-        case DELETE_INJURED_ANIMAL: {
+        case DELETE_USER_INJURED_ANIMAL: {
             if(action.payload.success===true){
                 return{
                     ...state,
@@ -47,15 +45,18 @@ export const userInjuredAnimalReducer = (state=initialData,action) =>{
             }
         }
 
-        case UPDATE_INJURED_ANIMAL: {
+        case UPDATE_USER_INJURED_ANIMAL: {
             if(action.payload.success===true){
-                state = state.animals?.filter(animal=>{return(animal._id !== action.payload.animal._id)})
-                return{
+                const updatedAnimal = action.payload.animal;
+                const updatedAnimals = state.animals?.map(animal => {
+                    return animal._id === updatedAnimal._id ? updatedAnimal : animal;
+                });
+                return {
                     ...state,
-                    animals:[action.payload.animal,...state.animals],
-                    success:action.payload.success,
-                    message:action.payload.message
-                }
+                    animals: updatedAnimals,
+                    success: action.payload.success,
+                    message: action.payload.message
+                };
             }
             else{
                 return{

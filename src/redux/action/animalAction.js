@@ -1,5 +1,5 @@
 import { BASE_URL } from "../baseURL";
-import { ADD_ANIMAL, DELETE_ANIMAL, GET_ALL_ANIMAL, GET_ANIMAL_DETAIL, GET_USER_ANIMAL, LOADING, UPDATE_ANIMAL } from "../type";
+import { ADD_ANIMAL, DELETE_ANIMAL, DELETE_USER_ANIMAL, GET_ALL_ANIMAL, GET_ANIMAL_DETAIL, GET_USER_ANIMAL, LOADING, UPDATE_ANIMAL, UPDATE_USER_ANIMAL } from "../type";
 
 
 
@@ -67,6 +67,7 @@ export const addAnimal = (animal) => {
           });
           const animaldata = await data.json();
           dispatch({type:UPDATE_ANIMAL, payload:animaldata});
+          dispatch({type:UPDATE_USER_ANIMAL, payload:animaldata});
           dispatch({type:LOADING,payload:false});
       }
       catch(error){
@@ -91,6 +92,7 @@ export const addAnimal = (animal) => {
                 });
             const animaldata = await data.json();
             dispatch({type: DELETE_ANIMAL, payload: animaldata});
+            dispatch({type: DELETE_USER_ANIMAL, payload: animaldata});
             dispatch({type: LOADING, payload: false});
         } catch (error) {
             dispatch({type: LOADING, payload: false});

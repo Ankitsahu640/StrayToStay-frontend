@@ -1,3 +1,4 @@
+import { Divider, Typography } from '@mui/material'
 import Sto1 from '../assets/C-S-1.jpg'
 import Sto2 from '../assets/C-S-2.jpg'
 import Sto3 from '../assets/C-S-3.jpg'
@@ -7,14 +8,14 @@ import Sto4 from '../assets/C-S-6.jpg'
 export default function Story(){
     return(
         <div id='stories' name='stories'>
-            <div class="flex flex-col py-28 px-1 bg-gray-900 sm:px-10 ">
-                <h1 class="font-bold text-5xl text-center mb-10 text-white mx-auto">Happy Stories </h1>
-                <p class="text-xl text-center mb-10 text-white">We are happy that we help families find a new family member for themselves.</p>
-                
-                <div class="flex overflow-x-scroll pb-10 hide-scroll-bar z-50 mt-5">
-                    <div class="flex flex-nowrap z-50">
-                        <div class="inline-block px-3">
-                            <div class="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
+            <div className="flex flex-col py-28 px-1 bg-gray-900 sm:px-10 mx-auto text-center">
+                <Typography variant='h1' component='h2' fontSize={50} fontWeight={600} color='white'> Happy Stories </Typography>
+                <p className='text-white'>We are happy that we help families find a new family member <br/> for themselves.</p>
+                <Divider sx={{ borderBottomWidth: 5,borderRadius:'5px', borderColor:'#ff8a00', margin:'15px auto' }}  width='200px'/>
+                <div className="flex overflow-x-scroll pb-10 hide-scroll-bar z-50 mt-5">
+                    <div className="flex flex-nowrap z-50">
+                        <div className="inline-block px-3">
+                            <div className="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
                                 <div className='flex gap-3 flex justify-center'>
                                     <div className='h-[54px] w-[54px] rounded-full overflow-hidden'>
                                         <img src={Sto1} alt="" className='rounded-full'/>
@@ -29,8 +30,8 @@ export default function Story(){
                                 </div>
                             </div>
                         </div>
-                        <div class="inline-block px-3">
-                            <div class="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
+                        <div className="inline-block px-3">
+                            <div className="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
                                 <div className='flex gap-3 flex justify-center'>
                                     <div className='h-[54px] w-[54px] rounded-full overflow-hidden'>
                                         <img src={Sto2} alt="" className='rounded-full'/>
@@ -45,8 +46,8 @@ export default function Story(){
                                 </div>
                             </div>
                         </div>
-                        <div class="inline-block px-3">
-                            <div class="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
+                        <div className="inline-block px-3">
+                            <div className="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
                                 <div className='flex gap-3 flex justify-center'>
                                     <div className='h-[54px] w-[54px] rounded-full overflow-hidden'>
                                         <img src={Sto3} alt="" className='rounded-full'/>
@@ -61,8 +62,8 @@ export default function Story(){
                                 </div>
                             </div>
                         </div>
-                        <div class="inline-block px-3">
-                            <div class="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
+                        <div className="inline-block px-3">
+                            <div className="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
                                 <div className='flex gap-2 flex justify-center'>
                                     <div className='h-[54px] w-[54px] rounded-full overflow-hidden'>
                                         <img src={Sto4} alt=""/>
@@ -77,8 +78,8 @@ export default function Story(){
                                 </div>
                             </div>
                         </div>
-                        <div class="inline-block px-3">
-                            <div class="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
+                        <div className="inline-block px-3">
+                            <div className="w-[310px] h-80 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 border-none px-4 flex items-center justify-center flex-col">
                                 <div className='flex gap-3 flex justify-center'>
                                     <div className='h-[54px] w-[54px] rounded-full overflow-hidden'>
                                         <img src={Sto5} alt="" className='rounded-full'/>
