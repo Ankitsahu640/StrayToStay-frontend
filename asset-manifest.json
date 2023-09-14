@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/StrayToStay-frontend/static/css/main.0002b4e2.css",
-    "main.js": "/StrayToStay-frontend/static/js/main.b4be2f4a.js",
+    "main.css": "/StrayToStay-frontend/static/css/main.607a5859.css",
+    "main.js": "/StrayToStay-frontend/static/js/main.4199e74b.js",
     "static/js/787.c4e7f8f9.chunk.js": "/StrayToStay-frontend/static/js/787.c4e7f8f9.chunk.js",
     "static/media/d1.jpg": "/StrayToStay-frontend/static/media/d1.19cdf54abca94ec1b8ab.jpg",
     "static/media/d5.jpg": "/StrayToStay-frontend/static/media/d5.0788464c2a54b8dc0630.jpg",
@@ -17,24 +17,31 @@
     "static/media/C-S-2.jpg": "/StrayToStay-frontend/static/media/C-S-2.a5e4b726128c5715efff.jpg",
     "static/media/cat_header.jpg": "/StrayToStay-frontend/static/media/cat_header.9adbf1f1dd065c6768ca.jpg",
     "static/media/rabbit.jpg": "/StrayToStay-frontend/static/media/rabbit.9230a97db63a14364fdb.jpg",
-    "static/media/injured-dog.jpg": "/StrayToStay-frontend/static/media/injured-dog.3f60d7600eb663387eef.jpg",
+    "static/media/help-rescue-background-img.jpeg": "/StrayToStay-frontend/static/media/help-rescue-background-img.6d71a4896ad8d0742cdd.jpeg",
+    "static/media/8-img.jpeg": "/StrayToStay-frontend/static/media/8-img.bf4f28312e9b1a13d634.jpeg",
     "static/media/animal_header2.jpg": "/StrayToStay-frontend/static/media/animal_header2.2a47287b35da1254ffc8.jpg",
+    "static/media/9-img.webp": "/StrayToStay-frontend/static/media/9-img.b5cf4ab90695b33dbe4a.webp",
     "static/media/service-background.jpg": "/StrayToStay-frontend/static/media/service-background.648aaca90cbf2a1b359a.jpg",
+    "static/media/rescue.webp": "/StrayToStay-frontend/static/media/rescue.5e3c14143cefdd3f3a3f.webp",
+    "static/media/10-img.jpeg": "/StrayToStay-frontend/static/media/10-img.5ed518ef29f96ee328ad.jpeg",
     "static/media/C-S-1.jpg": "/StrayToStay-frontend/static/media/C-S-1.7c52184f1a172865d594.jpg",
+    "static/media/1-img.avif": "/StrayToStay-frontend/static/media/1-img.3835fbeb9d996be4d3ee.avif",
+    "static/media/4-img.jpeg": "/StrayToStay-frontend/static/media/4-img.dd506705a858e1dbc730.jpeg",
     "static/media/C-S-3.jpg": "/StrayToStay-frontend/static/media/C-S-3.5df0f6309153845fb472.jpg",
     "static/media/services-1.png": "/StrayToStay-frontend/static/media/services-1.8fd92a136f1f977b8235.png",
+    "static/media/5-img.webp": "/StrayToStay-frontend/static/media/5-img.9b8c40c2265e000c5b65.webp",
     "static/media/C-S-4.jpg": "/StrayToStay-frontend/static/media/C-S-4.7b88d4052c7c0318e2e6.jpg",
     "static/media/C-S-6.jpg": "/StrayToStay-frontend/static/media/C-S-6.19769736d23428fe7c77.jpg",
     "static/media/services-2.png": "/StrayToStay-frontend/static/media/services-2.1d3cb3ef77499e665856.png",
     "static/media/services-3.png": "/StrayToStay-frontend/static/media/services-3.73feb77eda1fbb273f34.png",
     "static/media/wwr.avif": "/StrayToStay-frontend/static/media/wwr.38f6562c43de1f7c806a.avif",
     "index.html": "/StrayToStay-frontend/index.html",
-    "main.0002b4e2.css.map": "/StrayToStay-frontend/static/css/main.0002b4e2.css.map",
-    "main.b4be2f4a.js.map": "/StrayToStay-frontend/static/js/main.b4be2f4a.js.map",
+    "main.607a5859.css.map": "/StrayToStay-frontend/static/css/main.607a5859.css.map",
+    "main.4199e74b.js.map": "/StrayToStay-frontend/static/js/main.4199e74b.js.map",
     "787.c4e7f8f9.chunk.js.map": "/StrayToStay-frontend/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0002b4e2.css",
-    "static/js/main.b4be2f4a.js"
+    "static/css/main.607a5859.css",
+    "static/js/main.4199e74b.js"
   ]
 }
