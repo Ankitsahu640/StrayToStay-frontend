@@ -248,8 +248,8 @@ function AdoptPage() {
       </Stack>
       <Box >
           <Stack direction={'row'} container justifyContent="space-around" spacing={{ xs: 2, md: 3 }} columns={{xl:12}}
-            sx={{width: '100%', height:'40px', alignItems:'center', border: (theme) => `1px solid ${theme.palette.divider}`,borderRadius:"0 0px 8px 8px",
-              bgcolor: '#272e37',  color: '#ff8a00',boxShadow: '2px 2px 4px -2px white', position:"sticky", top:{sm:71,xs:55},zIndex:1
+            sx={{width: '100%', height:'40px', alignItems:'center', borderTop:'2px solid #ff8a00',borderRadius:"0 0px 8px 8px",
+              bgcolor: '#272e37',  color: '#ff8a00',boxShadow: '2px 2px 4px -2px white', position:"sticky", top:70.3,zIndex:1
             }}>
               {typeSelect.map((item)=>{
                 return <Typography key={item.id} className={`${active === item.id ? "active-link-type" : ''} petType`} fontSize={{md:'1rem',sm:'0.9rem',xs:"0.75rem"}} 

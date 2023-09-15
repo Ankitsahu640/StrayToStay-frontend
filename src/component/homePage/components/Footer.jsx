@@ -4,6 +4,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import PinterestIcon from '@mui/icons-material/Pinterest';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -29,11 +30,11 @@ const Footer = () => {
       <li>Support Us</li>
     </ul>
     <ul className='text-right lg:flex text-white'>
-      <li>Home</li>
-      <li>Adopt</li>
-      <li>Donate</li>
-      <li>Volunteer</li>
-      <li>Contact</li>
+      <li><Link to='/'>Home</Link></li>
+      <li><Link to='/adopt'>Adopt</Link></li>
+      <li><Link to='/donate'>Donate</Link></li>
+      <li><Link to='/contact'>Contact</Link></li>
+      <li><a href='https://github.com/Ankitsahu640'target='_blank'>GitHub</a></li>
     </ul>
   </div>
         </div>

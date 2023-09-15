@@ -83,10 +83,13 @@ const GeoCoderMarker = ({ address }) => {
       } catch (error) {
         console.error('Error fetching geocoding data:', error);
       }
-      map.flyTo(position, 10);
     };
     fetchData();
   }, [address, map]);
+
+  useEffect(()=>{
+    map.flyTo(position, 15);
+  },[position])
 
   return (
     <Marker position={position} icon={DefaultIcon}>

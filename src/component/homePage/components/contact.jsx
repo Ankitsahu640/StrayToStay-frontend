@@ -4,7 +4,7 @@ import React from 'react'
 function Contact() {
   return (
     <Box id='contactForm' sx={{  p: 2.9 ,backgroundSize:'cover',  boxSizing: 'content-box', backgroundRepeat:'no-repeat', backgroundImage:`url(https://img.freepik.com/premium-photo/vintage-telephone-receiver-wooden-table_172251-559.jpg)`}}>
-      <div className="container">
+      <Box maxWidth={600} p={3} mx='auto'>
         <h1 className="form-heading">Get in Touch </h1>
         <div className="contact-form">
           <form
@@ -37,7 +37,7 @@ function Contact() {
             <input className="rescue-btn" type="submit" value="Contact Us" />
           </form>
         </div>
-      </div>
+        </Box>
       </Box>
   )
 }
