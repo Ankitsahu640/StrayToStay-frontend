@@ -3,8 +3,8 @@ import React from 'react'
 
 function Contact() {
   return (
-    <Box id='contactForm' sx={{  p: 2.9 ,backgroundSize:'cover',  boxSizing: 'content-box', backgroundRepeat:'no-repeat', backgroundImage:`url(https://img.freepik.com/premium-photo/vintage-telephone-receiver-wooden-table_172251-559.jpg)`}}>
-      <Box maxWidth={600} p={3} mx='auto'>
+    <Box id='contactForm' sx={{py:2.9, backgroundSize:'cover',  boxSizing: 'content-box', backgroundRepeat:'no-repeat', backgroundImage:`url(https://img.freepik.com/premium-photo/vintage-telephone-receiver-wooden-table_172251-559.jpg)`}}>
+      <Box maxWidth={600} mx='auto'>
         <h1 className="form-heading">Get in Touch </h1>
         <div className="contact-form">
           <form

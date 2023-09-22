@@ -430,7 +430,8 @@ h1 {
       padding: 20px;
       border: 2px solid #ff6d00;
       border-radius: 10px;
-      min-width: 300px;
+      max-width: 500px;
+      width: 60%;
   }
   .contact-inputs input::placeholder{
       font-size: 20px;
@@ -440,7 +441,8 @@ h1 {
       padding: 20px;
       border: 2px solid #ff6d00;
       border-radius: 10px;
-      min-width: 300px;
+      max-width: 500px;
+      width: 60%;
   }
   .contact-inputs textarea::placeholder{
       font-size: 22px;

@@ -20,10 +20,10 @@ const Hero = ({ sticky, nav }) => { // Pass sticky and nav as props
          <h2 className='py-4 text-4xl'> Changing Lives Fur-ever!</h2>
         <div className='flex justify-center  items-center  mt-4'>
            <div>
-              <Link to='/donate'><Button variant="contained" size='large'  color='secondary' sx={{padding:'12px 28px',textTransform:'none',fontSize:'22px', fontWeight:'700',color:'white'}}>Donate</Button></Link>
+              <Link to='/donate'><Button variant="contained" size='large'  color='secondary' sx={{padding:{sm:'12px 28px',xs:'8px 22px'},textTransform:'none',fontSize:{sm:'22px',xs:'18px'}, fontWeight:'700',color:'white'}}>Donate</Button></Link>
            </div>
            <div>
-              <Link to='/adopt'><Button  variant="outlined" size='large' color='secondary' sx={{padding:'12px 28px',textTransform:'none',fontSize:'22px', fontWeight:'700'}}>Adopt me</Button></Link>
+              <Link to='/adopt'><Button  variant="outlined" size='large' color='secondary' sx={{padding:{sm:'12px 28px',xs:'8px 22px'},textTransform:'none',fontSize:{sm:'22px',xs:'18px'}, fontWeight:'700'}}>Adopt me</Button></Link>
            </div>
          </div>
       </div>
